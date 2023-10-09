@@ -294,15 +294,15 @@ public class BluetoothSerialService {
                         socket.connect();
                         success = true;
                     } catch (FallbackException e1) {
-                        Log.w("BT", "Could not initialize FallbackBluetoothSocket classes.", e);
+                        Log.w(TAG, "Could not initialize FallbackBluetoothSocket classes.", e);
                         connectionFailed();
                         return;
                     } catch (InterruptedException e1) {
-                        Log.w("BT", e1.getMessage(), e1);
+                        Log.w(TAG, e1.getMessage(), e1);
                         connectionFailed();
                         return;
                     } catch (IOException e1) {
-                        Log.w("BT", "Fallback failed. Cancelling.", e1);
+                        Log.w(TAG, "Fallback failed. Cancelling.", e1);
                         connectionFailed();
                         return;
                     }
