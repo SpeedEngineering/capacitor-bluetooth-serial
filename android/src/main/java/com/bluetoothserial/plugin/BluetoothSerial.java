@@ -32,6 +32,8 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.HashSet;
@@ -252,13 +254,11 @@ public class BluetoothSerial extends Plugin {
                 call.reject(ERROR_DEVICE_NOT_FOUND);
                 return;
             }
-            boolean isConnected = getService().isConnected(address);
             JSObject jsDevice = new JSObject();
             jsDevice.put("name", device.getName());
             jsDevice.put("address", device.getAddress());
             ret.put("device", jsDevice);
-            ret.put("state", isConnected ? BluetoothConnectionState.CONNECTED : BluetoothConnectionState.CONNECTION_FAILED);
-            ret.put("debug", String.format("connected() was called, isConnected(%s) = %s", address, isConnected ? "true" : "false"));
+            ret.put("state", "CONNECTING");
             notifyListeners("onConnectionChange", ret);
             resolveCall(call);
             freeSavedCall();

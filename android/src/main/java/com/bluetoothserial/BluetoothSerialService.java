@@ -1,5 +1,6 @@
 package com.bluetoothserial;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -75,7 +76,9 @@ public class BluetoothSerialService {
         if(!socket.isConnected()) {
             Log.i(TAG, "Device is already disconnected");
         } else {
-            return socket.disconnect();
+            boolean didDisconnect = socket.disconnect();
+            connections.remove(address);
+            return didDisconnect;
         }
 
         BluetoothConnection connection = connections.get(address);
@@ -227,7 +230,7 @@ public class BluetoothSerialService {
     private enum ConnectionStatus {
         NOT_CONNECTED,
         CONNECTING,
-        CONNECTED;
+        CONNECTED
     }
 
     private class BluetoothConnection extends Thread {
@@ -244,6 +247,7 @@ public class BluetoothSerialService {
         private int errorCount = 0;
         private ConnectionStatus status;
 
+        @SuppressLint("MissingPermission")
         public BluetoothConnection(BluetoothDevice device, boolean secure, BluetoothSerial serial) {
             this.device = device;
             this.secure = secure;
@@ -264,6 +268,7 @@ public class BluetoothSerialService {
             this.enabledNotifications = connection.enabledNotifications;
         }
 
+        @SuppressLint("MissingPermission")
         private void createRfcomm(BluetoothDevice device, boolean secure) {
             String socketType = secure ? "Secure" : "Insecure";
             Log.d(TAG, "BEGIN create socket SocketType:" + socketType);
@@ -294,15 +299,15 @@ public class BluetoothSerialService {
                         socket.connect();
                         success = true;
                     } catch (FallbackException e1) {
-                        Log.w(TAG, "Could not initialize FallbackBluetoothSocket classes.", e);
+                        Log.w(TAG, "[FallbackException e1] Could not initialize FallbackBluetoothSocket classes.", e);
                         connectionFailed();
                         return;
                     } catch (InterruptedException e1) {
-                        Log.w(TAG, e1.getMessage(), e1);
+                        Log.w(TAG, "[InterruptedException e1] "+e1.getMessage(), e1);
                         connectionFailed();
                         return;
                     } catch (IOException e1) {
-                        Log.w(TAG, "Fallback failed. Cancelling.", e1);
+                        Log.w(TAG, "[IOException e1] Fallback failed. Cancelling.", e1);
                         connectionFailed();
                         return;
                     }
@@ -314,7 +319,7 @@ public class BluetoothSerialService {
 
                 connected();
             } catch (IOException e) {
-                Log.e(TAG, "Socket Type: " + socketType + "create() failed", e);
+                Log.e(TAG, "[IOException e1] Socket Type: " + socketType + "create() failed", e);
                 connectionFailed();
             }
         }
@@ -545,11 +550,13 @@ public class BluetoothSerialService {
             return socket.getOutputStream();
         }
 
+        @SuppressLint("MissingPermission")
         @Override
         public String getRemoteDeviceName() {
             return socket.getRemoteDevice().getName();
         }
 
+        @SuppressLint("MissingPermission")
         @Override
         public void connect() throws IOException {
             socket.connect();
@@ -603,6 +610,7 @@ public class BluetoothSerialService {
         }
 
 
+        @SuppressLint("MissingPermission")
         @Override
         public void connect() throws IOException {
             fallbackSocket.connect();
