@@ -124,7 +124,9 @@ public class BluetoothSerial extends Plugin {
 
         JSObject response = new JSObject();
         JSArray devicesAsJson = BluetoothDeviceHelper.devicesToJSArray(devices);
-        response.put("devices", devicesAsJson);
+        if (devicesAsJson != null) {
+            response.put("devices", devicesAsJson);
+        } else response.put("devices", new JSArray());
 
         resolveCall(call, response);
 
@@ -199,7 +201,9 @@ public class BluetoothSerial extends Plugin {
             JSObject response = new JSObject();
             Set<BluetoothDevice> devices = bluetoothAdapter.getBondedDevices();
             JSArray devicesAsJson = BluetoothDeviceHelper.devicesToJSArray(devices);
-            response.put("devices", devicesAsJson);
+            if (devicesAsJson != null) {
+                response.put("devices", devicesAsJson);
+            } else response.put("devices", new JSArray());
             resolveCall(call, response);
         } catch (Exception e) {
             Log.e(getLogTag(), "Error getting devices", e);

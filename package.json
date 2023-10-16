@@ -1,69 +1,69 @@
 {
-	"name": "@speedengineering/capacitor-bluetooth-serial",
-	"version": "0.1.1",
-	"description": "Capacitor Bluetooth Serial Plugin",
-	"main": "dist/plugin.cjs.js",
-	"module": "dist/esm/index.js",
-	"types": "dist/esm/index.d.ts",
-	"unpkg": "dist/plugin.js",
-	"scripts": {
-		"verify": "npm run verify:android && npm run verify:web",
-		"verify:android": "cd android && ./gradlew clean build test && cd ..",
-		"verify:web": "npm run build",
-		"lint": "npm run eslint && npm run prettier -- --check",
-		"fmt": "npm run eslint -- --fix && npm run prettier -- --write",
-		"eslint": "eslint . --ext ts",
-		"prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
-		"docgen": "docgen --api BluetoothSerialPlugin --output-readme README.md --output-json dist/docs.json",
-		"build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
-		"clean": "rimraf ./dist",
-		"watch": "tsc --watch",
-		"prepublishOnly": "npm run build"
-	},
-	"authors": [
-		"SpeedEngineering GmbH",
-		"Gerson Groth"
-	],
-	"license": "MIT",
-	"devDependencies": {
-		"@capacitor/android": "^4.8.1",
-		"@capacitor/core": "^4.8.1",
-		"@capacitor/docgen": "^0.2.1",
-		"@ionic/eslint-config": "^0.3.0",
-		"@ionic/prettier-config": "^4.0.0",
-		"eslint": "^7.32.0",
-		"prettier": "~3.0.3",
-		"rimraf": "^3.0.2",
-		"rollup": "^2.79.1",
-		"typescript": "~4.0.8"
-	},
-	"peerDependencies": {
-		"@capacitor/core": "^4.8.1"
-	},
-	"prettier": "@ionic/prettier-config",
-	"eslintConfig": {
-		"extends": "@ionic/eslint-config/recommended"
-	},
-	"capacitor": {
-		"android": {
-			"src": "android"
-		}
-	},
-	"files": [
-		"android/src/main/",
-		"android/build.gradle",
-		"dist/"
-	],
-	"keywords": [
-		"capacitor",
-		"plugin",
-		"native"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/speedengineering/capacitor-bluetooth-serial"
-	},
-	"bugs": {
-		"url": "https://github.com/speedengineering/capacitor-bluetooth-serial/issues"
-	}
+  "name": "@speedengineering/capacitor-bluetooth-serial",
+  "version": "1.0.0",
+  "description": "Capacitor Bluetooth Serial Plugin",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "unpkg": "dist/plugin.js",
+  "scripts": {
+    "verify": "npm run verify:android && npm run verify:web",
+    "verify:android": "cd android && ./gradlew clean build test && cd ..",
+    "verify:web": "npm run build",
+    "lint": "npm run eslint && npm run prettier -- --check",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write",
+    "eslint": "eslint . --ext ts",
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
+    "docgen": "docgen --api BluetoothSerialPlugin --output-readme README.md --output-json dist/docs.json",
+    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
+    "clean": "rimraf ./dist",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "authors": [
+    "SpeedEngineering GmbH",
+    "Gerson Groth"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@capacitor/android": "^5.5.0",
+    "@capacitor/core": "^5.5.0",
+    "@capacitor/docgen": "^0.2.1",
+    "@ionic/eslint-config": "^0.3.0",
+    "@ionic/prettier-config": "^4.0.0",
+    "eslint": "^7.32.0",
+    "prettier": "~3.0.3",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.79.1",
+    "typescript": "~4.0.8"
+  },
+  "peerDependencies": {
+    "@capacitor/core": "^5.5.0"
+  },
+  "prettier": "@ionic/prettier-config",
+  "eslintConfig": {
+    "extends": "@ionic/eslint-config/recommended"
+  },
+  "capacitor": {
+    "android": {
+      "src": "android"
+    }
+  },
+  "files": [
+    "android/src/main/",
+    "android/build.gradle",
+    "dist/"
+  ],
+  "keywords": [
+    "capacitor",
+    "plugin",
+    "native"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/speedengineering/capacitor-bluetooth-serial"
+  },
+  "bugs": {
+    "url": "https://github.com/speedengineering/capacitor-bluetooth-serial/issues"
+  }
 }
