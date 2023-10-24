@@ -1,6 +1,6 @@
 {
   "name": "@speedengineering/capacitor-bluetooth-serial",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Capacitor Bluetooth Serial Plugin",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -20,6 +20,7 @@
     "watch": "tsc --watch",
     "prepublishOnly": "npm run build"
   },
+  "author": "SpeedEngineering GmbH",
   "authors": [
     "SpeedEngineering GmbH",
     "Gerson Groth"
